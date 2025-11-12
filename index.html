@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grade Checker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #74ebd5, #ACB6E5);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background-color: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      text-align: center;
+      width: 300px;
+    }
+
+    input {
+      padding: 10px;
+      width: 80%;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+      text-align: center;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    #result {
+      margin-top: 15px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Grade Checker</h2>
+    <input type="number" id="mark" placeholder="Enter your mark" />
+    <br>
+    <button onclick="checkGrade()">Check Grade</button>
+    <p id="result"></p>
+  </div>
+
+  <script>
+    function checkGrade() {
+      const mark = parseFloat(document.getElementById("mark").value);
+      const result = document.getElementById("result");
+
+      if (isNaN(mark) || mark < 0 || mark > 100) {
+        result.textContent = "Please enter a valid mark between 0 and 100.";
+        result.style.color = "red";
+        return;
+      }
+
+      let grade = "";
+      let color = "";
+
+      if (mark >= 70 && mark <= 100) {
+        grade = "A";
+        color = "#28a745"; // Green
+      } else if (mark >= 60) {
+        grade = "B";
+        color = "#007bff"; // Blue
+      } else if (mark >= 50) {
+        grade = "C";
+        color = "#ff9800"; // Orange
+      } else if (mark >= 40) {
+        grade = "D";
+        color = "#ff5722"; // Dark Orange
+      } else {
+        grade = "F";
+        color = "#dc3545"; // Red
+      }
+
+      result.textContent = `Your grade is: ${grade}`;
+      result.style.color = color;
+    }
+  </script>
+</body>
+</html>
